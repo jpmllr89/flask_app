@@ -12,6 +12,14 @@ def print_students_titlecase():
     print(students_titlecase)
 
 
+def add_student(name, student_id = 0):
+    student = {
+        
+        "name":name, 
+        "student_id": student_id
+        
+        }
+    students.append(name)
 
 
 def save_file(student):

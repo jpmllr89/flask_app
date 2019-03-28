@@ -35,13 +35,3 @@ class HighSchoolStudent(Student):
 
     def _get_school_name(self):
         return f"{self.get_name_capitalized()} from {super()._get_school_name()}"
-
-
-james = HighSchoolStudent("james")
-print(james.get_name_capitalized())
-print(james._get_school_name())
-student = Student("park")
-
-print(student.get_name_capitalized())
-print(student.__str__())
-
