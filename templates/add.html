@@ -55,9 +55,9 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('about') }}">Home</a></li>
-                <li class="active"><a href="{{ url_for('students_list')}}">Students</a></li>
-                <li><a href="{{ url_for('add_student') }}">Add Student</a></li>
+                <li><a href="{{ url_for('about')}}">Home</a></li>
+                <li><a href="{{url_for('students_list')}}">Students</a></li>
+                <li class="active"><a href="{{ url_for('add_student')}}">Add Student</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -65,32 +65,35 @@
 
 <div class="container">
 
-    <div class="page-header">
-        <h1>All Students</h1>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Student ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for student in students %}
-                <tr>
-                    <td>{{ student.student_id }}</td>
-                    <td>{{ student.name }}</td>
-                    <td>{{ student.last_name }}</td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+    <div class='container'>
+        <div class="page-header">
+            <h1>Add a Student</h1>
         </div>
-
+    
+        <div class="row">
+            <div class="col-md-8">
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" class="form-control" id="first-name" placeholder="First Name" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" class="form-control" id="last-name" placeholder="Last Name" name="last-name">
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="student-id">Student ID</label>
+                        <input type="number" class="form-control" id="student-id" placeholder="Student ID" name="student-id">
+                    </div>
+    
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+            </div>
+        </div>
     </div>
+    
 
 </div>
 

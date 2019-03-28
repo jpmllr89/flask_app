@@ -7,8 +7,20 @@ students = []
 
 app = Flask(__name__)
 
+
+
 @app.route("/", methods = ['GET', 'POST'])
-def students_page():
+def about():
+    return render_template("about.html")
+
+
+@app.route("/students_list", methods = ['GET', 'POST'])
+def students_list():
+    return render_template("students.html", students = students)
+
+
+@app.route("/add_student", methods = ['GET', 'POST'])
+def add_student():
     if request.method =="POST":
         new_student_id = request.form.get("student-id", "")
         new_student_name = request.form.get("name", "")
@@ -18,12 +30,8 @@ def students_page():
         students.append(new_student)
 
         return redirect(url_for("students_page"))
-    return render_template("index.html", students=students)
-@app.route("/student_list", methods = ['GET', 'POST'])
-def students_list():
-    if request.method=="GET":
-        return redirect(url_for("students_list"))
-    return render_template("students.html", students = students)
+    return render_template("add.html", students=students)
+
 
 if __name__ == "__main__":
     app.run(debug = True)
