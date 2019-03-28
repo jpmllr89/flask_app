@@ -1,6 +1,6 @@
 students = []
 
-from classes import Student
+from student import Student
 
 #gets student name in students list and capitalizes it.
 def get_students_titlecase():
