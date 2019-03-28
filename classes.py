@@ -3,7 +3,7 @@ students = []
 
 class Student:
 
-    school_name = "Springfield Elementary"
+    _school_name = "Springfield Elementary"
 
     def __init__(self, name, student_id = 0):
         self.name = name
@@ -25,10 +25,21 @@ class Student:
         return self.name.capitalize()
 
 
-    def get_school_name(self):
-        return self.school_name
+    def _get_school_name(self):
+        return self._school_name
 
 
+class HighSchoolStudent(Student):
+
+    _school_name = "Springfield High"
+
+    def _get_school_name(self):
+        return f"{self.get_name_capitalized()} from {super()._get_school_name()}"
+
+
+james = HighSchoolStudent("james")
+print(james.get_name_capitalized())
+print(james._get_school_name())
 student = Student("park")
 
 print(student.get_name_capitalized())
