@@ -65,12 +65,6 @@
 
 <div class="container">
 
-    <div class="jumbotron">
-        <h1>PyStudentManager</h1>
-        <p>This app will allow you to view all the enrolled students and detailed information about them (such as
-            student ID and their first name - more to come). You can also add more students to your list.</p>
-    </div>
-
     <div class="page-header">
         <h1>All Students</h1>
     </div>
@@ -82,7 +76,6 @@
                     <th>Student ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -91,42 +84,12 @@
                     <td>{{ student.student_id }}</td>
                     <td>{{ student.name }}</td>
                     <td>{{ student.last_name }}</td>
-                    <td>
-                        <button class="btn btn-primary btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Delete</button>
-                    </td>
                 </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
 
-    </div>
-
-    <div class="page-header">
-        <h1>Add a Student</h1>
-    </div>
-
-    <div class="row">
-        <div class="col-md-8">
-            <form method="POST">
-                <div class="form-group">
-                    <label for="first-name">First Name</label>
-                    <input type="text" class="form-control" id="first-name" placeholder="First Name" name="name">
-                </div>
-                <div class="form-group">
-                    <label for="last-name">Last Name</label>
-                    <input type="text" class="form-control" id="last-name" placeholder="Last Name" name="last-name">
-                </div>
-
-                <div class="form-group">
-                    <label for="student-id">Student ID</label>
-                    <input type="number" class="form-control" id="student-id" placeholder="Student ID" name="student-id">
-                </div>
-
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-        </div>
     </div>
 
 </div>
