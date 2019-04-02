@@ -8,17 +8,26 @@ students = []
 app = Flask(__name__)
 
 
-
+# Home Page
 @app.route("/", methods = ['GET', 'POST'])
 def about():
     return render_template("about.html")
 
-
+#List of Students Page
 @app.route("/students_list", methods = ['GET', 'POST'])
 def students_list():
     return render_template("students.html", students = students)
 
+#Deletion Page
+@app.route("/students_list/delete", methods=["GET", "POST", "DELETE"])
+def delete_student():
+    pass
 
+@app.route("/students_list/edit", methods = ['GET', 'POST', 'UPDATE'])
+def edit_student():
+    pass
+
+#Add a Student Page
 @app.route("/add_student", methods = ['GET', 'POST'])
 def add_student():
     if request.method =="POST":
@@ -32,6 +41,6 @@ def add_student():
         return redirect(url_for("students_page"))
     return render_template("add.html", students=students)
 
-
+#Start app if program name is main
 if __name__ == "__main__":
     app.run(debug = True)
