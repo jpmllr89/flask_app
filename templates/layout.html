@@ -41,23 +41,13 @@
 
 <body>
 
-{% block body %}
+    {%include includes/_navbar.html %}
 
-{% endblock %}
-
-
-<div class="container">
-    <div class="jumbotron">
-        <h1>PyStudentManager</h1>
-        <p>This app will allow you to view all the enrolled students and detailed information about them (such as
-            student ID and their first name - more to come). You can also add more students to your list.</p>
+    <div class="container">
+        {% block body %}{% endblock %}
     </div>
 
-<footer class="footer">
-  <div class="container">
-      <p class="text-muted">Built by Pluralsight Students for the "Python - Getting Started" course.</p>
-  </div>
-</footer>
+    {%include includes/_footer.html}%}
 
 
 <!-- Bootstrap core JavaScript
