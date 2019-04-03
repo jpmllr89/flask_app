@@ -10,14 +10,17 @@
             <div class="col-md-8">
                 <form method="POST">
                     <div class="form-group">
-                       {{render_field(form.username, clas_="form-control")}}
+                        <label for="first-name">First Name</label>
+                        <input type="text" class="form-control" id="first-name" placeholder="First Name" name="name">
                     </div>
                     <div class="form-group">
-                        {{render_field(form.username, clas_="form-control")}}
+                        <label for="last-name">Last Name</label>
+                        <input type="text" class="form-control" id="last-name" placeholder="Last Name" name="last-name">
                     </div>
     
                     <div class="form-group">
-                        {{render_field(form.username, clas_="form-control")}}
+                        <label for="student-id">Student ID</label>
+                        <input type="number" class="form-control" id="student-id" placeholder="Student ID" name="student-id">
                     </div>
     
                     <button type="submit" class="btn btn-default">Submit</button>
