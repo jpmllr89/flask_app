@@ -58,8 +58,9 @@ class RegisterForm(Form):
 def register():
     form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
+            return render_template('register.html', form = form) 
 
-    return render_template('register.html', form = form) 
+
 #Start app if program name is main
 if __name__ == "__main__":
     app.run()
