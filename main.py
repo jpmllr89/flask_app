@@ -1,7 +1,11 @@
 from student import Student
 from hs_student import *
 import functions as f
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, flash, session, logging
+from flask_mysqldb import mysql 
+from wtforms import form, StringField, TextAreaField, PasswordField, validators
+from passlib.hash import sha256_crypt
+
 
 students = []
 
@@ -38,6 +42,24 @@ def add_student():
         return redirect(url_for("students_page"))
     return render_template("add.html", students=students)
 
+
+#with wt forms you have to create a class for the form you are creating.
+class RegisterForm(Form):
+    user_name = StringField('User Name', [validators.Length(min = 4, max = 25)])
+    email = StringField('Email: ', [validators.Length(min = 6, max = 25)])
+    password = StringField('Password: ', [
+        validators.DataRequired(),
+        validators.EqualTo('confirm', message="Passwords do not match")
+        ]
+    )
+    confirm = PasswordField('Confirm Password')
+
+@app.route('/register', methods = ['GET', 'POST']) 
+def register():
+    form = RegisterForm(request.form)
+    if request.method == 'POST' and form.validate():
+
+    return render_template('register.html', form = form) 
 #Start app if program name is main
 if __name__ == "__main__":
     app.run()
