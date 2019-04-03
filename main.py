@@ -18,14 +18,11 @@ def about():
 def students_list():
     return render_template("students.html", students = students)
 
-#Deletion Page
-@app.route("/students_list/delete", methods=["GET", "POST", "DELETE"])
-def delete_student():
-    pass
+#Delete/edit page
 
-@app.route("/students_list/edit", methods = ['GET', 'POST', 'UPDATE'])
-def edit_student():
-    pass
+@app.route("/students_list/<string: id>/", methods = ['GET', 'POST', 'UPDATE'])
+def edit_student(id):
+    return render_template("students.html", id = student.student_id)
 
 #Add a Student Page
 @app.route("/add_student", methods = ['GET', 'POST'])

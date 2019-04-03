@@ -1,5 +1,6 @@
+from data import student
 
-students = []
+students = student()
 
 
 class Student:
