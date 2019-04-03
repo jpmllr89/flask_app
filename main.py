@@ -63,9 +63,16 @@ def register():
             
             #creating the cursor to execute demands
             cur = mysql.connection.cursor()
-            cur.execute("INSERT INTO users(") 
+            cur.execute("INSERT INTO users(user_name, email, password) VALUES(%s, %s, %s, %s)", (user_name, email, password))
+            msql.connection.commit()
 
-            return render_template('register.html', form = form) 
+            cur.close()
+
+            flash("You are now registered and can login", 'success')
+
+            redirect(url_for('index'))
+
+        return render_template('register.html', form = form) 
 
 
 #Start app if program name is main
