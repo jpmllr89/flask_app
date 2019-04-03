@@ -2,14 +2,24 @@ from student import Student
 from hs_student import *
 import functions as f
 from flask import Flask, render_template, redirect, url_for, request, flash, session, logging
-from flask_mysqldb import mysql 
-from wtforms import form, StringField, TextAreaField, PasswordField, validators
+from flask_mysqldb import MySql 
+from register_form import RegisterForm
 from passlib.hash import sha256_crypt
 
 
-students = []
+students = students()
 
 app = Flask(__name__)
+
+#config mySQL
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'jpmllr89'
+app.config['MYSQL_PASSWORD'] = 'ninetails.666'
+app.config['MYSQL_DB'] = 'StudentFlaskApp'
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+
+#initialize mySQL
+mysql = MySql(app)
 
 
 # Home Page
@@ -43,21 +53,18 @@ def add_student():
     return render_template("add.html", students=students)
 
 
-#with wt forms you have to create a class for the form you are creating.
-class RegisterForm(Form):
-    user_name = StringField('User Name', [validators.Length(min = 4, max = 25)])
-    email = StringField('Email: ', [validators.Length(min = 6, max = 25)])
-    password = StringField('Password: ', [
-        validators.DataRequired(),
-        validators.EqualTo('confirm', message="Passwords do not match")
-        ]
-    )
-    confirm = PasswordField('Confirm Password')
-
 @app.route('/register', methods = ['GET', 'POST']) 
 def register():
     form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
+            user_name = form.user_name.data 
+            email = form.email.data
+            password = sha256_crypt.encrypt(str(form.password.data))
+            
+            #creating the cursor to execute demands
+            cur = mysql.connection.cursor()
+            cur.execute("INSERT INTO users(") 
+
             return render_template('register.html', form = form) 
 
 
