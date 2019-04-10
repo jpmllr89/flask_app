@@ -1,13 +1,14 @@
 from student import Student
+import data
 from hs_student import *
 import functions as f
 from flask import Flask, render_template, redirect, url_for, request, flash, session, logging
-from flask_mysqldb import MySql 
+from flask_mysqldb import MySQL
 from register_form import RegisterForm
 from passlib.hash import sha256_crypt
 
 
-students = students()
+students = data.student()
 
 app = Flask(__name__)
 
@@ -19,7 +20,7 @@ app.config['MYSQL_DB'] = 'StudentFlaskApp'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 #initialize mySQL
-mysql = MySql(app)
+mysql = MySQL(app)
 
 
 # Home Page
@@ -34,7 +35,7 @@ def students_list():
 
 #Delete/edit page
 
-@app.route("/students_list/<string: id>/", methods = ['GET', 'POST', 'UPDATE'])
+@app.route("/students_list/", methods = ['GET', 'POST', 'UPDATE'])
 def edit_student(id):
     return render_template("students.html", id = student.student_id)
 
@@ -72,7 +73,8 @@ def register():
 
             redirect(url_for('index'))
 
-        return render_template('register.html', form = form) 
+        
+    return render_template('register.html', form = form) 
 
 
 #Start app if program name is main

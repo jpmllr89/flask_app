@@ -3,8 +3,7 @@ from wtforms import form, StringField, TextAreaField, PasswordField, validators
 
 #with wt forms you have to create a class for the form you are creating.
 
-
-class RegisterForm(Form):
+class RegisterForm():
     user_name = StringField('User Name', [validators.Length(min = 4, max = 25)])
     email = StringField('Email: ', [validators.Length(min = 6, max = 25)])
     password = StringField('Password: ', [
